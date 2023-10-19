@@ -1,0 +1,29 @@
+name: nightly-test
+on:
+  schedule:
+    - cron: '0 0 * * 2-6'
+jobs:
+  run-nightly-test:
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Count new commits since yesterday
+        run: echo "NEW_COMMIT_COUNT=$(git log --date=local --oneline --since '24 hours ago' textnoisr | wc -l)" >> $GITHUB_ENV
+      - uses: actions/setup-python@v4
+        id: setup-python
+        with:
+          python-version-file: pyproject.toml
+        if: ${{ env.NEW_COMMIT_COUNT > 0 }}
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+        if: ${{ env.NEW_COMMIT_COUNT > 0 }}
+      - name: Install dependencies
+        run: poetry install --no-interaction
+      - name: Test with pytest
+        if: ${{ env.NEW_COMMIT_COUNT > 0 }}
+        run: poetry run pytest -m 'nightly' || ([ $? = 5 ] && exit 0 || exit $?)

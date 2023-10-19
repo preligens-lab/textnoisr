@@ -1,0 +1,30 @@
+name: code-style
+on:
+  pull_request:
+    types:
+    - opened
+    - synchronize
+    - reopened
+  push:
+    branches: [main]
+jobs:
+  check-hooks:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+    - name: Install and setup pre-commit and other tools (eg black) with poetry
+      run: poetry install --only dev
+    - name: Run pre-commit hooks
+      if: github.event_name == 'push'
+      run: poetry run pre-commit run --all

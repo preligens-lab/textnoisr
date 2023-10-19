@@ -1,0 +1,82 @@
+site_name: textnoisr
+
+docs_dir: "docs"
+repo_url: https://github.com/earthcube-lab/textnoisr
+
+nav:
+    - "textnoisr presentation": index.md
+    - tutorial.md
+    - results.md
+    - Background:
+      - how_this_works.md
+      - swap_unbiasing.md
+    - api.md
+
+theme:
+  name: "material"
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - content.code.annotate
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: purple
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+markdown_extensions:
+    - abbr
+    - footnotes
+    - tables
+    - admonition
+    - def_list
+    - attr_list
+    - pymdownx.tasklist:
+        custom_checkbox: true
+    - pymdownx.details
+    - pymdownx.superfences:
+        custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:pymdownx.superfences.fence_code_format
+    - pymdownx.highlight:
+        anchor_linenums: true
+        line_spans: __span
+        pygments_lang_class: true
+    - pymdownx.tasklist
+    - pymdownx.tabbed
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - pymdownx.arithmatex:
+        generic: true
+    - pymdownx.emoji:
+        emoji_index: !!python/name:material.extensions.emoji.twemoji
+        emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_javascript:
+  - assets/javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [textnoisr]
