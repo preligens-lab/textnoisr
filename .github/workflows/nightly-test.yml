@@ -23,6 +23,7 @@ jobs:
           virtualenvs-in-project: true
         if: ${{ env.NEW_COMMIT_COUNT > 0 }}
       - name: Install dependencies
+        if: ${{ env.NEW_COMMIT_COUNT > 0 }}
         run: poetry install --no-interaction
       - name: Test with pytest
         if: ${{ env.NEW_COMMIT_COUNT > 0 }}
