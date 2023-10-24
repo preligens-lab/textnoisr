@@ -1,6 +1,6 @@
 """Unbias noise.
 
-See [this document](/textnoisr/docs/swap_unbiasing.md).
+See [this document](swap_unbiasing.md).
 """
 import functools
 import math
@@ -86,7 +86,7 @@ def __compute_noise_level_from_expected_cer(cer: float, N: int) -> float:
 def unbias_swap(p: float, N: int) -> float:
     """Re-compute p to take unbiasing into account.
 
-    See doc for [more details](/textnoisr/docs/swap_unbiasing.md).
+    See doc for [more details](swap_unbiasing.md).
 
     Args:
         p: Input probability. The user want the expectation of the Character Error Rate
