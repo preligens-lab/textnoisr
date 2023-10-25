@@ -22,7 +22,7 @@ class CharNoiseAugmenter:
 
     With enough samples, the CER of the output tends to the noise level
         (terms and conditions may apply,
-        see details in [docs/how_this_works.md](/how_this_works)).
+        see details in [docs/how_this_works.md](how_this_works.md)).
 
     Args:
         noise_level: between 0 and 1, it corresponds to the level of noise to add to the

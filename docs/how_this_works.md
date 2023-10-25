@@ -4,10 +4,10 @@
 
 As can be seen in the source code, there are three main parts:
 
-* The module [textnoisr/noise_dataset.py](/api/#textnoisr.noise_dataset),
+* The module [textnoisr/noise_dataset.py](api.md#textnoisr.noise_dataset),
     consists on wrapper functions to make this library works seamlessly on the `Dataset` class.
 
-* The module [textnoisr/noise.py](/api/#textnoisr.noise)
+* The module [textnoisr/noise.py](api.md#textnoisr.noise)
     contains a class `CharNoiseAugmenter` that work on the level of a single document.
     This class is basically a wrapper around four methods (one for each action).
     In pseudo-python, the first three ("delete", "insert", "substitute") are one-liners like
@@ -26,7 +26,7 @@ As can be seen in the source code, there are three main parts:
     This is taken into account in the last module.
 
 * The module
-    [textnoisr/noise_unbiasing.py](/api/#textnoisr.noise_unbiasing),
+    [textnoisr/noise_unbiasing.py](api.md#textnoisr.noise_unbiasing),
     hides the details needed for the Character Error Rate to tend to the noise level.
 
 

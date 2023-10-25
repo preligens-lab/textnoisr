@@ -2,7 +2,7 @@
 
 ## Result in the ideal case of a string with no repeating characters
 
-As detailed theoretically [here](/how_this_works),
+As detailed theoretically [here](how_this_works.md),
 the four actions have *arbitrarly small errors*
 on texts where each letter is unique, like `"01234"` or `"abcdefghijklmnopqrstuvwxyz"`.
 
