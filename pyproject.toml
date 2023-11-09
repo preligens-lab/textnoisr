@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "textnoisr"
-version = "1.0.0-1"
+version = "1.0.1"
 description = "Add noise to text at the character level"
 authors = [
     "Lilian Sanselme <lilian.sanselme@preligens.com>"
