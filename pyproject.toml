@@ -12,6 +12,7 @@ maintainers = [
 ]
 
 readme = "README.md"
+license = "BSD-2-Clause"
 
 homepage = "https://earthcube-lab.github.io/textnoisr"
 repository = "https://github.com/earthcube-lab/textnoisr"
