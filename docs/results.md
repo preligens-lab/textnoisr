@@ -34,10 +34,14 @@ We want to check both
 * **on the right panel**: how long it takes to execute the code.
 
 
-![insert](images/insert.png)
+![insert](images/insert_light.png#only-light)
+![insert](images/insert_dark.png#only-dark)
 
-![delete](images/delete.png)
+![delete](images/delete_light.png#only-light)
+![delete](images/delete_dark.png#only-dark)
 
-![substitute](images/substitute.png)
+![substitute](images/substitute_light.png#only-light)
+![substitute](images/substitute_dark.png#only-dark)
 
-![swap](images/swap.png)
+![swap](images/swap_light.png#only-light)
+![swap](images/swap_dark.png#only-dark)
