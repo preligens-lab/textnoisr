@@ -197,7 +197,7 @@ def generate_plot(
         if split:
             title_parts.append(f"split: '{split}'")
     if dataset_size:
-        title_parts.append(f"dataset size: '{dataset_size}'")
+        title_parts.append(f"dataset size: {dataset_size}k characters")
     title = ", ".join(title_parts).capitalize()
     fig.suptitle(title, y=1.07)
     output_path = output_dir / f"{action}_{theme}.png"
