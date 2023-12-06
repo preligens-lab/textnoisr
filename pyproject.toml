@@ -1,12 +1,29 @@
 [tool.poetry]
 name = "textnoisr"
-version = "1.0.0-0"
+version = "1.0.1-0"
 description = "Add noise to text at the character level"
 authors = [
-    "Lilian Sanselme  <lilian.sanselme@preligens.com>"
+    "Lilian Sanselme <lilian.sanselme@preligens.com>"
+]
+maintainers = [
+    "Félix Martel <felix.martel@preligens.com>",
+    "Romain Keramitas <romain.keramitas@preligens.com>",
+    "Valentin Masdeu <valentin.masdeu@preligens.com>"
 ]
 
 readme = "README.md"
+license = "BSD-2-Clause"
+
+homepage = "https://earthcube-lab.github.io/textnoisr"
+repository = "https://github.com/earthcube-lab/textnoisr"
+documentation = "https://earthcube-lab.github.io/textnoisr"
+
+keywords = ["nlp", "natural language processing", "text", "augmentation", "ocr", "typo"]
+
+classifiers = ["Topic :: Text Processing :: General"]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/earthcube-lab/textnoisr/issues"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
