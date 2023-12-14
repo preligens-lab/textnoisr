@@ -88,7 +88,8 @@ Huge bias to be corrected here.
 
 _TL;DR:_ A correction using Markov Chains has been implemented
     for the Character Error Rate to converge to `noise_level`.
-    In the case of long strings, this correction is an approximation.
+    An extra adjustment factor is then applied
+    to take into account the structured pattern of natural language.
 
 If you want to know the gory details, you may want to check [this dedicated document](swap_unbiasing.md).
 
