@@ -39,7 +39,7 @@ class CharNoiseAugmenter:
             Defaults to `None`.
         natural_language_swap_correction: A correction factor to take into account the
             fact that natural language is not random.
-            Defaults to 1.0655, which is the correction factor for English.
+            Defaults to 1.052, which is the correction factor for English.
 
     Raises:
              ValueError: If the action is not one of the available actions.
@@ -53,7 +53,7 @@ class CharNoiseAugmenter:
         actions: tuple[str, ...] = _AVAILABLE_ACTIONS,
         character_set: tuple[str, ...] = tuple(string.ascii_letters),
         seed: int | None = None,
-        natural_language_swap_correction: float = 1.0655,
+        natural_language_swap_correction: float = 1.052,
     ) -> None:
         self.actions = [
             x for i, x in enumerate(actions) if x not in actions[:i]

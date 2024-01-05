@@ -57,7 +57,7 @@ DEFAULT_N_SAMPLES = 17
 
 def max_level(actions):
     if "swap" in actions:
-        return MAX_SWAP_LEVEL / 1.0655 - 0.005
+        return MAX_SWAP_LEVEL / 1.052 - 0.005
     return 1
 
 
