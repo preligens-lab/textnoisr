@@ -1,9 +1,9 @@
 # `textnoisr`: Adding random noise to a dataset
 
-[![build-doc](https://github.com/earthcube-lab/textnoisr/actions/workflows/build-doc.yml/badge.svg)](https://github.com/earthcube-lab/textnoisr/actions/workflows/build-doc.yml)
-[![code-style](https://github.com/earthcube-lab/textnoisr/actions/workflows/code-style.yml/badge.svg)](https://github.com/earthcube-lab/textnoisr/actions/workflows/code-style.yml)
-[![nightly-test](https://github.com/earthcube-lab/textnoisr/actions/workflows/nightly-test.yml/badge.svg)](https://github.com/earthcube-lab/textnoisr/actions/workflows/nightly-test.yml)
-[![unit-test](https://github.com/earthcube-lab/textnoisr/actions/workflows/unit-test.yml/badge.svg)](https://github.com/earthcube-lab/textnoisr/actions/workflows/unit-test.yml)
+[![build-doc](https://github.com/preligens-lab/textnoisr/actions/workflows/build-doc.yml/badge.svg)](https://github.com/preligens-lab/textnoisr/actions/workflows/build-doc.yml)
+[![code-style](https://github.com/preligens-lab/textnoisr/actions/workflows/code-style.yml/badge.svg)](https://github.com/preligens-lab/textnoisr/actions/workflows/code-style.yml)
+[![nightly-test](https://github.com/preligens-lab/textnoisr/actions/workflows/nightly-test.yml/badge.svg)](https://github.com/preligens-lab/textnoisr/actions/workflows/nightly-test.yml)
+[![unit-test](https://github.com/preligens-lab/textnoisr/actions/workflows/unit-test.yml/badge.svg)](https://github.com/preligens-lab/textnoisr/actions/workflows/unit-test.yml)
 
 
 `textnoisr` is a python package that allows to **add random noise to a text dataset**,
