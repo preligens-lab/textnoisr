@@ -83,7 +83,7 @@ def __compute_noise_level_from_expected_cer(cer: float, N: int) -> float:
 
 
 @functools.lru_cache
-def unbias_swap(p: float, N: int) -> float:
+def unbias_swap(p: float, N: int, natural_language_swap_correction: float) -> float:
     """Re-compute p to take unbiasing into account.
 
     See doc for [more details](swap_unbiasing.md).
@@ -92,6 +92,8 @@ def unbias_swap(p: float, N: int) -> float:
         p: Input probability. The user want the expectation of the Character Error Rate
             to tend to this value.
         N: The length of the string.
+        natural_language_swap_correction: A correction factor to take into account the
+            fact that natural language is not random.
 
     Returns:
         Unbiased probability, using an approximation formula for strings that are too
@@ -99,7 +101,7 @@ def unbias_swap(p: float, N: int) -> float:
     """
     # To avoid some "math domain error" later, in the case when a former unbiasing
     # made p > MAX_SWAP_LEVEL, we need to force it at the max level:
-    p = min(p, MAX_SWAP_LEVEL)
+    p = min(p, MAX_SWAP_LEVEL) * natural_language_swap_correction
     # Whatever, N = nchar = 0 anyway, so returning p or something else does not matter:
     if N == 0:
         return p

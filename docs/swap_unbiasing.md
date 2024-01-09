@@ -321,5 +321,12 @@ As mentioned earlier, there is a maximum reachable in the Character Error Rate w
 This maximum is directly due to the constraint of preventing swapping the current character if it has already been swapped.
 
 
+## Taking into account repetitions of characters in natural language
+
+In natural language, our assumption that two consecutive characters are always different is not always true.
+To take this into account, we have to introduce a small multiplicative coefficient to the probability $p$.
+
+For English language, we computed this correction factor to be approximately 1.052, which is the default in `textnoisr`.
+
 
 *[Character Error Rate]: (=CER) A metric that quantify how noisy is a text. It is number of insert, delete and substitute errors, divided by the total number of characters.

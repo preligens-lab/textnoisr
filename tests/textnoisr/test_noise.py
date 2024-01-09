@@ -30,7 +30,9 @@ REL_TOLERANCE = 5e-3
     [(0), (0.1), (0.5), (1)],
 )
 def test__random_char(p):
-    noise_augmenter = noise.CharNoiseAugmenter(seed=42, noise_level=0)
+    noise_augmenter = noise.CharNoiseAugmenter(
+        seed=42, noise_level=0, natural_language_swap_correction=1
+    )
     example = [
         noise_augmenter._random_char(p, character_set=string.ascii_letters)
         for _ in range(1000000)
@@ -108,7 +110,9 @@ def test__random_char(p):
 )
 def test__atomic_random_chars(action, one_token, p):
     """Test the functions for which number of changes is easy to predict."""
-    noise_augmenter = noise.CharNoiseAugmenter(noise_level=p, actions=[action], seed=42)
+    noise_augmenter = noise.CharNoiseAugmenter(
+        noise_level=p, actions=[action], seed=42, natural_language_swap_correction=1
+    )
     n_sample = 100000
 
     examples = [one_token] * n_sample
@@ -137,9 +141,9 @@ def test__atomic_random_chars(action, one_token, p):
 
     proba_nochange = sum(diff) / len(diff)
     if action == "swap":
-        expected_proba_nochange = (1 - noise.unbias.unbias_swap(p, n_char)) ** (
-            n_char - 1
-        )
+        expected_proba_nochange = (
+            1 - noise.unbias.unbias_swap(p, n_char, natural_language_swap_correction=1)
+        ) ** (n_char - 1)
     else:
         expected_proba_nochange = (1 - p) ** n_char
 
@@ -181,18 +185,25 @@ def test__atomic_random_chars(action, one_token, p):
 def test__swap_random_chars(one_token, p, expected_results):
     if p < 0.55:
         noise_augmenter = noise.CharNoiseAugmenter(
-            noise_level=p, actions=["swap"], seed=42
+            noise_level=p, actions=["swap"], seed=42, natural_language_swap_correction=1
         )
         example = [one_token] * 100000
         noised_example = [noise_augmenter.add_noise(e) for e in example]
         assert set(noised_example) == expected_results
     else:
         with pytest.raises(ValueError):
-            noise.CharNoiseAugmenter(noise_level=p, actions=["swap"], seed=42)
+            noise.CharNoiseAugmenter(
+                noise_level=p,
+                actions=["swap"],
+                seed=42,
+                natural_language_swap_correction=1,
+            )
 
 
 def test_reproducibility():
-    noise_augmenter_42 = noise.CharNoiseAugmenter(noise_level=0.5, seed=42)
+    noise_augmenter_42 = noise.CharNoiseAugmenter(
+        noise_level=0.5, seed=42, natural_language_swap_correction=1
+    )
     noisy_hello = noise_augmenter_42.add_noise("Hello")
     assert noisy_hello == "HleVlo"
     noisy_hello = noise_augmenter_42.add_noise("Hello")

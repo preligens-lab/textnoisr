@@ -37,6 +37,9 @@ class CharNoiseAugmenter:
             *insert* or *substitute* actions. Defaults to string.ascii_letters.
         seed: A seed to ensure reproducibility.
             Defaults to `None`.
+        natural_language_swap_correction: A correction factor to take into account the
+            fact that natural language is not random.
+            Defaults to 1.052, which is the correction factor for English.
 
     Raises:
              ValueError: If the action is not one of the available actions.
@@ -50,6 +53,7 @@ class CharNoiseAugmenter:
         actions: tuple[str, ...] = _AVAILABLE_ACTIONS,
         character_set: tuple[str, ...] = tuple(string.ascii_letters),
         seed: int | None = None,
+        natural_language_swap_correction: float = 1.052,
     ) -> None:
         self.actions = [
             x for i, x in enumerate(actions) if x not in actions[:i]
@@ -57,6 +61,7 @@ class CharNoiseAugmenter:
         self.character_set = character_set
         self.noise_level = noise_level
         self.random = random.Random(seed)  # nosec
+        self.natural_language_swap_correction = natural_language_swap_correction
 
         # checks
         unsupported_actions = [
@@ -72,10 +77,14 @@ class CharNoiseAugmenter:
                 "Noise level must be between 0 and 1 (included), you provide"
                 f" {self.noise_level}"
             )
-        if (self.noise_level > unbias.MAX_SWAP_LEVEL) & ("swap" in self.actions):
+        if (
+            self.noise_level
+            > unbias.MAX_SWAP_LEVEL / self.natural_language_swap_correction
+        ) & ("swap" in self.actions):
             raise ValueError(
-                f"You cannot have a CER greater than {unbias.MAX_SWAP_LEVEL} when using"
-                " action `swap`"
+                "You cannot have a CER greater than"
+                f" {unbias.MAX_SWAP_LEVEL / self.natural_language_swap_correction} when"
+                " using action `swap`"
             )
 
     def _random_success(self, p: float) -> bool:
@@ -172,7 +181,7 @@ class CharNoiseAugmenter:
         Returns:
             A string derived from `text` with potentially swapped characters.
         """
-        p = unbias.unbias_swap(p, len(text))
+        p = unbias.unbias_swap(p, len(text), self.natural_language_swap_correction)
 
         result = []
         was_swapped = False
