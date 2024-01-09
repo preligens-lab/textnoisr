@@ -14,16 +14,16 @@ maintainers = [
 readme = "README.md"
 license = "BSD-2-Clause"
 
-homepage = "https://earthcube-lab.github.io/textnoisr"
-repository = "https://github.com/earthcube-lab/textnoisr"
-documentation = "https://earthcube-lab.github.io/textnoisr"
+homepage = "https://preligens-lab.github.io/textnoisr"
+repository = "https://github.com/preligens-lab/textnoisr"
+documentation = "https://preligens-lab.github.io/textnoisr"
 
 keywords = ["nlp", "natural language processing", "text", "augmentation", "ocr", "typo"]
 
 classifiers = ["Topic :: Text Processing :: General"]
 
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/earthcube-lab/textnoisr/issues"
+"Bug Tracker" = "https://github.com/preligens-lab/textnoisr/issues"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"

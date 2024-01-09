@@ -1,7 +1,7 @@
 site_name: textnoisr
 
 docs_dir: "docs"
-repo_url: https://github.com/earthcube-lab/textnoisr
+repo_url: https://github.com/preligens-lab/textnoisr
 
 nav:
     - "textnoisr presentation": index.md

@@ -1,7 +1,8 @@
 from datasets import load_dataset
+from evaluate import load
+
 from textnoisr import noise, noise_dataset
 from textnoisr.noise_unbiasing import MAX_SWAP_LEVEL
-from evaluate import load
 
 cer = load("cer")
 
@@ -12,7 +13,7 @@ noised_dataset = noise_dataset.add_noise(
     dataset100_text,
     noise.CharNoiseAugmenter(
         noise_level=MAX_SWAP_LEVEL,
-        actions=["swap"],
+        actions=("swap",),
         seed=42,
         natural_language_swap_correction=1,
     ),
