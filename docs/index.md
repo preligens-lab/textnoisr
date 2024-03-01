@@ -106,4 +106,6 @@ for the package to be both user-friendly and correct.
 A [dedicated page](swap_unbiasing.md) deeps dive in the case of the `swap` action.
 * The [API Reference](api.md) details all the technical descriptions needed.
 
+There is also [a Medium article](https://medium.com/earthcube-stories/textnoisr-a-journey-into-noise-calibration-for-nlp-4d39279ef0f6) about this project.
+
 *[Character Error Rate]: (=CER) A metric that quantify how noisy is a text. It is number of insert, delete and substitute errors, divided by the total number of characters.

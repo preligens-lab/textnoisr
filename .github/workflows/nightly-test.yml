@@ -1,7 +1,7 @@
 name: nightly-test
 on:
   schedule:
-    - cron: '0 0 * * 2-6'
+    - cron: '42 21 * * *'
 jobs:
   run-nightly-test:
     strategy:
