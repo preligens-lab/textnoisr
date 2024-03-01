@@ -101,3 +101,5 @@ We have been extra careful to explain how some statistical bias have been avoide
 for the package to be both user-friendly and correct.
 A [dedicated page](docs/swap_unbiasing.md) deeps dive in the case of the `swap` action.
 * The [API Reference](docs/api.md) details all the technical descriptions needed.
+
+There is also [a Medium article](https://medium.com/earthcube-stories/textnoisr-a-journey-into-noise-calibration-for-nlp-4d39279ef0f6) about this project.
