@@ -1,4 +1,5 @@
 """Add noise into text."""
+
 import random
 import string
 from itertools import zip_longest

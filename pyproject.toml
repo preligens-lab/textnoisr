@@ -40,7 +40,7 @@ mkdocs-material = "^9.4.6"
 mkdocstrings = "^0.23.0"
 mkdocstrings-python = "^1.7.3"
 pymdown-extensions = "^10.3"
-black = "^23.10.0"
+black = ">=23.10,<25.0"
 flake8 = "^6.1.0"
 flake8-print = "^5.0.0"
 flake8-use-fstring = "^1.4"
@@ -53,7 +53,7 @@ jiwer = "^3.0.3"
 
 
 [tool.black]
-experimental-string-processing = true
+string-processing = true
 
 [tool.ruff]
 # Select: Flake rules (E, F, W), isort (I), pydocstyle (D), flake8-bandit (S)
