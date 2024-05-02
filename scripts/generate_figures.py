@@ -26,6 +26,7 @@ It will download the `rotten_tomatoes` dataset and generate the figures in
 python scripts/generate_figures.py --help
 ```
 """
+
 import argparse
 import logging
 import sys

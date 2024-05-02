@@ -53,7 +53,7 @@ jiwer = "^3.0.3"
 
 
 [tool.black]
-experimental-string-processing = true
+string-processing = true
 
 [tool.ruff]
 # Select: Flake rules (E, F, W), isort (I), pydocstyle (D), flake8-bandit (S)
