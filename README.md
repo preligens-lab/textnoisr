@@ -19,7 +19,6 @@ pip install textnoisr
 
 Here is an example if your dataset consists on the first few lines of [the Zen of python](https://peps.python.org/pep-0020/):
 
-
 **Raw text**
 
 ```
