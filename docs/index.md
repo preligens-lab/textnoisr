@@ -9,6 +9,12 @@
 `textnoisr` is a python package that allows to **add random noise to a text dataset**,
 and to **control very accurately** the quality of the result.
 
+You can install it using `pip`:
+
+```
+pip install textnoisr
+```
+
 Here is an example if your dataset consists on the first few lines of [the Zen of python](https://peps.python.org/pep-0020/):
 <table>
     <tr>
