@@ -26,7 +26,7 @@ classifiers = ["Topic :: Text Processing :: General"]
 "Bug Tracker" = "https://github.com/preligens-lab/textnoisr/issues"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.12"
+python = ">=3.10,<3.13"
 datasets = ">=2.14.5"
 numpy = ">=1.26.1"
 scipy = ">=1.11.3"
