@@ -12,7 +12,7 @@ REL_TOLERANCE = 1.5e-2
 
 @pytest.fixture()
 def dataset100_text():
-    return hf_load_dataset("rotten_tomatoes", split="train")
+    return hf_load_dataset("cornell-movie-review-data/rotten_tomatoes", split="train")
 
 
 @pytest.fixture()

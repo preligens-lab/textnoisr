@@ -35,7 +35,7 @@ For example, let's consider the
 
 ```pycon
 >>> from datasets import load_dataset  # https://huggingface.co/docs/datasets
->>> dataset = load_dataset("rotten_tomatoes", split="train")
+>>> dataset = load_dataset("cornell-movie-review-data/rotten_tomatoes", split="train")
 >>> print(dataset)
 Dataset({
     features: ['text', 'label'],
