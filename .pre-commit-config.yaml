@@ -19,8 +19,8 @@ repos:
       args: [--fix, --exit-non-zero-on-fix]
 
 # Will autoformat the doc
-- repo: https://github.com/myint/docformatter
-  rev: v1.5.0
+- repo: https://github.com/PyCQA/docformatter
+  rev: v1.7.8
   hooks:
   - id: docformatter
     args:
@@ -55,5 +55,7 @@ repos:
       entry: mypy
       language: system
       types: [python]
+      # Parallel mypy processes would race on .mypy_cache.
+      require_serial: true
       args: [--ignore-missing-imports]
       exclude: tests/
