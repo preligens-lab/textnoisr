@@ -17,6 +17,15 @@ You can install it using `pip`:
 pip install textnoisr
 ```
 
+For a reproducible install with the exact dependency versions `textnoisr` was tested with,
+use the `constraints.txt` attached to each [GitHub release](https://github.com/preligens-lab/textnoisr/releases):
+
+```
+pip install textnoisr==X.Y.Z -c https://github.com/preligens-lab/textnoisr/releases/download/vX.Y.Z/constraints.txt
+```
+
+To contribute, install [uv](https://docs.astral.sh/uv/) and run `uv sync`, then e.g. `uv run pytest`.
+
 Here is an example if your dataset consists on the first few lines of [the Zen of python](https://peps.python.org/pep-0020/):
 
 **Raw text**

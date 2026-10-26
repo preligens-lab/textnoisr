@@ -13,20 +13,10 @@ jobs:
   build-documentation:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
-        id: setup-python
-        with:
-          python-version-file: pyproject.toml
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-      - name: Install dependencies
-        run: poetry install --no-interaction
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.2
       - name: Build the documentation in strict mode
-        run: poetry run mkdocs build --strict
+        run: uv run --locked mkdocs build --strict
       - name: Publish the documentation
         if: github.event_name == 'push'
-        run: poetry run mkdocs gh-deploy --force
+        run: uv run --locked mkdocs gh-deploy --force

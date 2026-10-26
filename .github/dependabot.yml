@@ -1,0 +1,18 @@
+version: 2
+updates:
+  # Bumps uv.lock (dev and CI environment only). Users installing from PyPI are
+  # not affected: runtime bounds in pyproject.toml are edited by hand.
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      all-dependencies:
+        patterns: ["*"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      actions:
+        patterns: ["*"]

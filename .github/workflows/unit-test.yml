@@ -7,23 +7,47 @@ on:
     - reopened
   push:
     branches: [main]
+  schedule:
+    # Weekly run so the "latest" job catches breakage from new upstream releases.
+    - cron: '17 4 * * 1'
 jobs:
-  run-unit-test:
+  locked:
+    name: locked (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Check that uv.lock is up to date with pyproject.toml
+        run: uv lock --check
+      - name: Test with pytest
+        run: uv run --locked pytest -m 'not nightly'
+
+  lowest:
+    # Checks that the lower bounds declared in pyproject.toml actually work.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
-        id: setup-python
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.2
         with:
-          python-version-file: pyproject.toml
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+          python-version: '3.10'
+      - name: Test with the lowest direct dependencies
+        # datasets 2.14.5 does not cap pyarrow but breaks with pyarrow>=21, and the
+        # pin must have a floor since lowest-direct also applies to it.
+        run: uv run --isolated --resolution lowest-direct --with 'pyarrow>=20,<21' pytest -m 'not nightly'
+
+  latest:
+    # What a user gets with a fresh `pip install textnoisr` today.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.2
         with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-      - name: Check the pyproject.toml and the poetry.lock file are consistent.
-        run: poetry check
-      - name: Install dependencies
-        run: poetry install --no-interaction
-      - name: Test with pytest
-        run: poetry run  pytest -m 'not nightly' || ([ $? = 5 ] && exit 0 || exit $?)
+          python-version: '3.14'
+      - name: Test with the latest dependencies
+        run: uv run --upgrade pytest -m 'not nightly'
