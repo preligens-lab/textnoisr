@@ -51,7 +51,7 @@ cer = load("cer")
 ACTIONS = ("delete", "insert", "substitute", "swap")
 STYLE_DIR = Path(__file__).parent.parent / "styles"
 OUTPUT_DIR = Path(__file__).parent.parent / "docs" / "images"
-DEFAULT_DATASET = "rotten_tomatoes"
+DEFAULT_DATASET = "cornell-movie-review-data/rotten_tomatoes"
 DEFAULT_SPLIT = "train"
 DEFAULT_N_SAMPLES = 17
 

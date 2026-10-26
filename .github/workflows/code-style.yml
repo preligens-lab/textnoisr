@@ -11,19 +11,7 @@ jobs:
   check-hooks:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
-        ref: ${{ github.head_ref }}
-        fetch-depth: 0
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-    - name: Install Poetry
-      uses: snok/install-poetry@v1
-      with:
-        virtualenvs-create: true
-        virtualenvs-in-project: true
-    - name: Install and setup pre-commit and other tools (eg black) with poetry
-      run: poetry install --only dev
+    - uses: actions/checkout@v7
+    - uses: astral-sh/setup-uv@v10.3.2
     - name: Run pre-commit hooks
-      run: poetry run pre-commit run --all
+      run: uv run --locked pre-commit run --all-files

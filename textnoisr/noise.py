@@ -197,7 +197,7 @@ class CharNoiseAugmenter:
         return "".join(result)
 
     def add_noise(self, text: str | list[str]) -> str | list[str]:
-        """Add noise to a text. The text can be splitted into words.
+        """Add noise to a text, which can be split into words.
 
         Args:
             text: The text on which to add noise.

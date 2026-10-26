@@ -1,0 +1,68 @@
+name: release
+# Publish to PyPI when a version tag (e.g. v1.2.0) is pushed. To release:
+#   uv version --bump minor   # edits pyproject.toml and uv.lock
+#   git commit -am "Release vX.Y.Z" && git tag -a vX.Y.Z -m vX.Y.Z && git push --follow-tags
+# (the tag must be annotated: --follow-tags ignores lightweight tags)
+on:
+  push:
+    tags: ['v*']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.2
+      - name: Check that the tag matches the version in pyproject.toml
+        run: |
+          version="$(uv version --short)"
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match pyproject.toml version $version"
+            exit 1
+          fi
+      - name: Test with pytest
+        run: uv run --locked pytest -m 'not nightly'
+      - name: Build sdist and wheel
+        run: uv build
+      - name: Export the locked runtime dependencies
+        # Optional, for users who want a reproducible install:
+        #   pip install textnoisr==X.Y.Z -c constraints.txt
+        run: |
+          uv export --locked --no-default-groups --no-emit-project --no-hashes -o constraints.txt
+          uv export --locked --no-default-groups --no-emit-project --format pylock.toml -o pylock.toml
+      - uses: actions/upload-artifact@v7
+        with:
+          name: release-files
+          path: |
+            dist/
+            constraints.txt
+            pylock.toml
+
+  publish-pypi:
+    needs: build
+    runs-on: ubuntu-latest
+    # Trusted publishing: configure this repository, workflow and environment on
+    # https://pypi.org/manage/project/textnoisr/settings/publishing/
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: release-files
+      - uses: pypa/gh-action-pypi-publish@release/v1
+
+  github-release:
+    needs: publish-pypi
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: release-files
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >
+          gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY"
+          --generate-notes dist/* constraints.txt pylock.toml
