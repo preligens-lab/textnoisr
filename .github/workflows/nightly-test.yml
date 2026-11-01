@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v7
       - name: Count new commits since yesterday
         run: echo "NEW_COMMIT_COUNT=$(git log --date=local --oneline --since '24 hours ago' textnoisr | wc -l)" >> $GITHUB_ENV
-      - uses: astral-sh/setup-uv@v10.3.2
+      - uses: astral-sh/setup-uv@v10.3.3
         if: ${{ env.NEW_COMMIT_COUNT > 0 || github.event_name == 'workflow_dispatch' }}
       - name: Test with pytest
         if: ${{ env.NEW_COMMIT_COUNT > 0 || github.event_name == 'workflow_dispatch' }}
